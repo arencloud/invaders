@@ -12,7 +12,7 @@ Retro terminal shooter with sound, score tracking, and a festive holiday skin (s
                   ARENCLOUD retro holiday edition
 ```
 
-## Preview (captured from `cargo run --example snapshot --no-default-features`)
+## Preview
 ```
  SCORE: 01200  HIGH: 03400  INVADERS: 18
                 .  '                   .
