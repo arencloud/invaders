@@ -1,13 +1,19 @@
-use std::time::Duration;
-use crate::{NUM_COLS, NUM_ROWS};
 use crate::frame::{Drawable, Frame};
 use crate::invaders::Invaders;
 use crate::shot::Shot;
+use crate::{NUM_COLS, NUM_ROWS};
+use std::time::Duration;
 
 pub struct Player {
     x: usize,
     y: usize,
     shots: Vec<Shot>,
+}
+
+impl Default for Player {
+    fn default() -> Self {
+        Self::new()
+    }
 }
 
 impl Player {
@@ -19,7 +25,7 @@ impl Player {
         }
     }
     pub fn move_left(&mut self) {
-        if self.x >0 {
+        if self.x > 0 {
             self.x -= 1;
         }
     }
@@ -42,18 +48,15 @@ impl Player {
         }
         self.shots.retain(|shot| !shot.dead());
     }
-    pub fn detect_hits(&mut self, invaders: &mut Invaders) -> bool {
-        let mut hit_something = false;
+    pub fn detect_hits(&mut self, invaders: &mut Invaders) -> usize {
+        let mut hits = 0;
         for shot in self.shots.iter_mut() {
-            if !shot.exploding {
-                if invaders.kill_invader_at(shot.x, shot.y) {
-                    hit_something = true;
-                    shot.explode();
-                }
+            if !shot.exploding && invaders.kill_invader_at(shot.x, shot.y) {
+                hits += 1;
+                shot.explode();
             }
-
         }
-        hit_something
+        hits
     }
 }
 

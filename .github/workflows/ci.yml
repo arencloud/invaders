@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: minimal
+          override: true
+      - name: Format
+        run: cargo fmt --all -- --check
+      - name: Clippy (no sound to avoid ALSA dependency)
+        run: cargo clippy --workspace --all-targets --no-default-features -- -D warnings
+      - name: Tests (no sound to avoid ALSA dependency)
+        run: cargo test --workspace --no-default-features

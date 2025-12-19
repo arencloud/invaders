@@ -5,7 +5,14 @@ authors = ["Arencloud <info@arencloud.com>"]
 edition = "2021"
 
 
+[features]
+default = ["sound"]
+sound = ["rusty_audio"]
+
 [dependencies]
-crossterm = "0.25.0"
-rusty_audio = "1.1.4"
-rusty_time = "0.11.0"
+crossterm = "0.29.0"
+rusty_audio = { version = "1.4.1", optional = true }
+rusty_time = "1.1.0"
+
+[build-dependencies]
+pkg-config = "0.3"
