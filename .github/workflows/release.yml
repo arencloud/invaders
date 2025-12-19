@@ -70,3 +70,42 @@ jobs:
         with:
           name: invaders-${VERSION}-${{ matrix.target }}
           path: dist/invaders-${VERSION}-${{ matrix.target }}
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read crate version
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION=$(python - <<'PY'
+          import json, subprocess
+          meta = json.loads(subprocess.check_output(["cargo", "metadata", "--format-version", "1"]))
+          pkg = next(p for p in meta["packages"] if p["name"] == "invaders")
+          print(pkg["version"])
+          PY
+          )
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dist/
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Invaders ${{ env.VERSION }}
+          body: |
+            Invaders ${{ env.VERSION }} release.
+
+            Included artifacts:
+            - Linux (x86_64)
+            - macOS (aarch64, x86_64)
+            - Windows (x86_64)
+          files: dist/**/*
