@@ -11,7 +11,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        include:
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+          - os: macos-latest
+            target: aarch64-apple-darwin
+          - os: macos-latest
+            target: x86_64-apple-darwin
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -35,23 +43,24 @@ PY
           toolchain: stable
           profile: minimal
           override: true
+          target: ${{ matrix.target }}
 
       - name: Install sound deps (Linux)
         if: matrix.os == 'ubuntu-latest'
         run: sudo apt-get update && sudo apt-get install -y pkg-config libasound2-dev
 
       - name: Build (release)
-        run: cargo build --release
+        run: cargo build --release --target ${{ matrix.target }}
 
       - name: Package artifact
         shell: bash
         run: |
           set -euo pipefail
-          BIN="target/release/invaders"
-          if [[ "${{ matrix.os }}" == "windows-latest" ]]; then
+          BIN="target/${{ matrix.target }}/release/invaders"
+          if [[ "${{ matrix.target }}" == *"windows"* ]]; then
             BIN="${BIN}.exe"
           fi
-          PKG="dist/invaders-${VERSION}-${{ matrix.os }}"
+          PKG="dist/invaders-${VERSION}-${{ matrix.target }}"
           mkdir -p "$PKG"
           cp "$BIN" "$PKG/"
           cp -r sound "$PKG/"
@@ -59,5 +68,5 @@ PY
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: invaders-${VERSION}-${{ matrix.os }}
-          path: dist/invaders-${VERSION}-${{ matrix.os }}
+          name: invaders-${VERSION}-${{ matrix.target }}
+          path: dist/invaders-${VERSION}-${{ matrix.target }}
