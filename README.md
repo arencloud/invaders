@@ -23,7 +23,7 @@ Retro terminal shooter with sound, score tracking, and a festive holiday skin (s
 ## Audio
 - Linux needs ALSA dev libs. The build script probes `alsa` via `pkg-config` and emits a friendly warning; install `libasound2-dev` (or equivalent) for sound.
 - If ALSA is not available, build/run without sound (`--no-default-features`) or just mute (`--mute`).
-- The `sound/` folder (explode/lose/move/pew/startup/win WAVs) ships with release artifacts.
+- The `sound/` folder (explode/lose/move/pew/startup/win WAVs) ships with release artifacts. These sounds were AI-generated using the author's voice as a source.
 
 ## Development
 - Format: `cargo fmt --all -- --check`
