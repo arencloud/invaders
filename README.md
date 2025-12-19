@@ -1,4 +1,4 @@
-# Invaders (v0.2.3)
+# Invaders (v0.2.4)
 
 Retro terminal shooter with sound, score tracking, and a festive holiday skin (snowfield, tree-like invaders, candy-cane shots).
 
