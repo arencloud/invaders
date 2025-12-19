@@ -20,7 +20,7 @@ impl Player {
     pub fn new() -> Self {
         Self {
             x: NUM_COLS / 2,
-            y: NUM_ROWS - 1,
+            y: NUM_ROWS - 2,
             shots: Vec::new(),
         }
     }

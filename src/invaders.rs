@@ -107,7 +107,7 @@ impl Invaders {
 impl Drawable for Invaders {
     fn draw(&self, frame: &mut Frame) {
         for invader in self.army.iter() {
-            frame[invader.x][invader.y] = if self.flash { "M" } else { "W" };
+            frame[invader.x][invader.y] = if self.flash { "A" } else { "V" };
         }
     }
 }

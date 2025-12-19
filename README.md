@@ -4,21 +4,36 @@ Retro terminal shooter with sound, score tracking, and a festive holiday skin (s
 
 ## Logo
 ```
-  _   _ _   _   _   _  ___  ___  ___  ___  ___ 
- | | | | \ | | / \ | |/ _ \|_ _|/ _ \|   \| __|
- | |_| |  \| |/ _ \| | (_) || || (_) | |) | _| 
-  \___/|_|\__/__/ \_\_|\___/|___|\___/|___/|___|
-          snow, sprites, sound, and cheer
+     _    ____  _____ _   _  ____ _     ___  _   _  ____  _   _ 
+    / \  |  _ \| ____| \ | |/ ___| |   / _ \| \ | |/ ___|| | | |
+   / _ \ | | | |  _| |  \| | |   | |  | | | |  \| | |    | |_| |
+  / ___ \| |_| | |___| |\  | |___| |__| |_| | |\  | |___ |  _  |
+ /_/   \_\____/|_____|_| \_|\____|_____\___/|_| \_|\____||_| |_|
+                  ARENCLOUD retro holiday edition
 ```
 
-## Preview (colors map to in-game palette)
+## Preview (captured from `cargo run --example snapshot --no-default-features`)
 ```
- Snowy HUD: SCORE 01200 | HIGH 03400 | INVADERS 18
- Sky:   *  .  .  *      (white/grey flakes)
- Trees: A V A V A V A   (green)
- Shots: / \ / \         (red/white candy-cane bolts)
- Player: 🪃             (bright white)
- Ground: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ SCORE: 01200  HIGH: 03400  INVADERS: 18
+                .  '                   .
+  V V'V V V V V V V V V V.V V V V V V   
+           .  '                   .  '  
+' V V V V V V V V V V V'V V V V V V V   
+      .  '                   .  '       
+  V V V V V V V.V V V V V V V V V V V . 
+ .  '                   .  '            
+  V V V V V V'V V V V V V V V V V.V V   
+                   .  '                 
+     .  '                   .  '        
+              .  '                   .  
+.  '                   .  '             
+         .  '                   .  '    
+                  .  '                  
+    .  '                   .  '         
+             .  '                   .  '
+  '                   .  '              
+        .  '        🪃          .  '     
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~          
 ```
 
 ## Play
