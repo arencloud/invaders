@@ -2,6 +2,26 @@
 
 Retro terminal shooter with sound, score tracking, and a festive holiday skin (snowfield, tree-like invaders, candy-cane shots).
 
+## Logo
+```
+ __     ___                  _                
+ \ \   / (_)   __   __   ___| | __ ___  _ __  
+  \ \ / /| |/\\ \ / /  / _ \ |/ // _ \| '_ \ 
+   \ V / |  <  \ V /  |  __/   <| (_) | | | |
+    \_/  |_|\_\  \_/    \___|_|\_\\___/|_| |_|
+```
+
+## Preview
+```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SCORE: 01200 HIGH: 03400 INVADERS: 18
+                              *   .   *        *
+          A   A   A   A     A     A  A   A   A
+        A   A   A   A   A     A     A   A   A
+      A   A   A   A   A   A     A     A   A
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           ^  <- you (candy-cane shots!)
+```
+
 ## Play
 - With sound: `cargo run`
 - Mute at runtime: `cargo run -- --mute`
