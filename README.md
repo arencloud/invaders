@@ -4,22 +4,21 @@ Retro terminal shooter with sound, score tracking, and a festive holiday skin (s
 
 ## Logo
 ```
- __     ___                  _                
- \ \   / (_)   __   __   ___| | __ ___  _ __  
-  \ \ / /| |/\\ \ / /  / _ \ |/ // _ \| '_ \ 
-   \ V / |  <  \ V /  |  __/   <| (_) | | | |
-    \_/  |_|\_\  \_/    \___|_|\_\\___/|_| |_|
+  _   _ _   _   _   _  ___  ___  ___  ___  ___ 
+ | | | | \ | | / \ | |/ _ \|_ _|/ _ \|   \| __|
+ | |_| |  \| |/ _ \| | (_) || || (_) | |) | _| 
+  \___/|_|\__/__/ \_\_|\___/|___|\___/|___/|___|
+          snow, sprites, sound, and cheer
 ```
 
-## Preview
+## Preview (colors map to in-game palette)
 ```
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SCORE: 01200 HIGH: 03400 INVADERS: 18
-                              *   .   *        *
-          A   A   A   A     A     A  A   A   A
-        A   A   A   A   A     A     A   A   A
-      A   A   A   A   A   A     A     A   A
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-           ^  <- you (candy-cane shots!)
+ Snowy HUD: SCORE 01200 | HIGH 03400 | INVADERS 18
+ Sky:   *  .  .  *      (white/grey flakes)
+ Trees: A V A V A V A   (green)
+ Shots: / \ / \         (red/white candy-cane bolts)
+ Player: 🪃             (bright white)
+ Ground: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ```
 
 ## Play
