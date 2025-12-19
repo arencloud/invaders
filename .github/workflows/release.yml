@@ -30,12 +30,12 @@ jobs:
         run: |
           set -euo pipefail
           VERSION=$(python - <<'PY'
-import json, subprocess
-meta = json.loads(subprocess.check_output(["cargo", "metadata", "--format-version", "1"]))
-pkg = next(p for p in meta["packages"] if p["name"] == "invaders")
-print(pkg["version"])
-PY
-)
+          import json, subprocess
+          meta = json.loads(subprocess.check_output(["cargo", "metadata", "--format-version", "1"]))
+          pkg = next(p for p in meta["packages"] if p["name"] == "invaders")
+          print(pkg["version"])
+          PY
+          )
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
 
       - uses: actions-rs/toolchain@v1
