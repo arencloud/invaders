@@ -1,0 +1,50 @@
+name: Release builds
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: minimal
+          override: true
+
+      - name: Install sound deps (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        run: sudo apt-get update && sudo apt-get install -y pkg-config libasound2-dev
+
+      - name: Build (release)
+        run: cargo build --release
+
+      - name: Package artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          BIN="target/release/invaders"
+          if [[ "${{ matrix.os }}" == "windows-latest" ]]; then
+            BIN="${BIN}.exe"
+          fi
+          PKG="dist/invaders-${{ matrix.os }}"
+          mkdir -p "$PKG"
+          cp "$BIN" "$PKG/"
+          cp -r sound "$PKG/"
+          cp README.md "$PKG/"
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: invaders-${{ matrix.os }}
+          path: dist/invaders-${{ matrix.os }}
