@@ -17,6 +17,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Read crate version
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION=$(python - <<'PY'
+import json, subprocess
+meta = json.loads(subprocess.check_output(["cargo", "metadata", "--format-version", "1"]))
+pkg = next(p for p in meta["packages"] if p["name"] == "invaders")
+print(pkg["version"])
+PY
+)
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
@@ -38,7 +51,7 @@ jobs:
           if [[ "${{ matrix.os }}" == "windows-latest" ]]; then
             BIN="${BIN}.exe"
           fi
-          PKG="dist/invaders-${{ matrix.os }}"
+          PKG="dist/invaders-${VERSION}-${{ matrix.os }}"
           mkdir -p "$PKG"
           cp "$BIN" "$PKG/"
           cp -r sound "$PKG/"
@@ -46,5 +59,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: invaders-${{ matrix.os }}
-          path: dist/invaders-${{ matrix.os }}
+          name: invaders-${VERSION}-${{ matrix.os }}
+          path: dist/invaders-${VERSION}-${{ matrix.os }}
